@@ -1,0 +1,8 @@
+---
+- name: Run `ubuntu-drivers install`
+  command: 'ubuntu-drivers install'
+
+- name: Install ntfs-3g drivers
+  apt:
+    name: ntfs-3g
+    state: present

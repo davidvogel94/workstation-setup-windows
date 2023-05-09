@@ -1,0 +1,43 @@
+---
+- name: Install node
+  apt:
+    pkg:
+      - nodejs
+      - npm
+    state: latest
+
+- name: Install global NPM packages
+  community.general.npm:
+    global: true
+    name: '{{ item }}'
+  loop: '{{ node["globals"] }}'
+
+- name: Clone Nodenv
+  become: true
+  become_user: '{{ username }}'
+  git:
+    repo: https://github.com/nodenv/nodenv.git
+    dest: '/home/{{ username }}/.nodenv'
+
+- name: Configure Nodenv
+  become: true
+  become_user: '{{ username }}'
+  command: '/home/{{ username }}/.nodenv/src/configure'
+
+- name: Build Nodenv
+  # become: true
+  # become_user: '{{ username }}'
+  community.general.make:
+    chdir: '/home/{{ username }}/.nodenv/src'
+
+- name: Add nodenv to PATH
+  lineinfile:
+    path: '/home/{{ username }}/{{ item[1] }}'
+    line: 'export PATH=/home/{{ username }}/.nodenv/bin:$PATH'
+  loop: '{{ env["rc"] }}'
+
+- name: Add nodenv init to RC
+  lineinfile:
+    path: '/home/{{ username }}/{{ item[1] }}'
+    line: 'eval "$(nodenv init - {{ item[0] }})"'
+  loop: '{{ env["rc"] }}'

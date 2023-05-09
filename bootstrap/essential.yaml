@@ -1,0 +1,13 @@
+---
+- name: Install build-essential
+  apt:
+    name: build-essential
+
+- name: Install essential requirements
+  apt:
+    pkg:
+      - golang
+      - git
+      - wget
+      - curl
+

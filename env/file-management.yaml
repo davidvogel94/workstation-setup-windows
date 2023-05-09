@@ -1,0 +1,10 @@
+- name: Download and install `lf`
+  # get_url:
+  #   url: https://github.com/gokcehan/lf/releases/download/r28/lf-linux-amd64.tar.gz
+  #   dest: /tmp
+  become: true
+  become_user: '{{ username }}'
+  unarchive:
+    src: 'https://github.com/gokcehan/lf/releases/download/r{{ versions["lf"] }}/lf-linux-amd64.tar.gz'
+    remote_src: yes
+    dest: /home/{{ username }}/.local/bin

@@ -1,0 +1,33 @@
+---
+- name: Install microk8s
+  snap:
+    name: microk8s
+    classic: true
+    state: present
+
+- name: Install kubectl
+  snap:
+    name: kubectl
+    classic: true
+    state: present
+
+- name: Create ~/.kube if non-existent
+  file:
+    path: '/home/{{ username }}/.kube'
+    state: directory
+    mode: 0755
+    owner: '{{ username }}'
+    group: '{{ username }}'
+
+- name: Enable microk8s addons
+  command: 'microk8s enable {{ item }}'
+  loop: '{{ microk8s["addons"] }}'
+
+- name: Start microk8s
+  shell: 'microk8s start && microk8s status --wait-ready'
+
+- name: Import local k8s configuration
+  become: true
+  become_user: '{{ username }}'
+  shell: '{{ item }}'
+  loop: '{{ kubectl_setup }}'

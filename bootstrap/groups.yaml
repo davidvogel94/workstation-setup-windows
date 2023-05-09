@@ -1,0 +1,12 @@
+---
+- name: Create groups
+  group:
+    name: '{{ item }}'
+    state: present
+  loop: '{{ groups_list }}'
+
+- name: Add user to groups
+  user:
+    name: '{{ username }}'
+    groups: '{{ groups_list }}'      
+    append: yes

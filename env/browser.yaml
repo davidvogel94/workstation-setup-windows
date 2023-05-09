@@ -1,0 +1,5 @@
+---
+- name: Install browser
+  apt:
+    name: '{{ browser_package }}'
+    state: latest

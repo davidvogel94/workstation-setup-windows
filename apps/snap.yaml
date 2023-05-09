@@ -1,0 +1,6 @@
+---
+- name: Install selected snap packages
+  loop: '{{ snap }}'
+  snap:
+    name: '{{ item["name"] }}'
+    classic: '{{ item["classic"] }}'

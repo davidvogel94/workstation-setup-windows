@@ -1,0 +1,4 @@
+---
+apt_repos:
+  - name: vivaldi
+    repo: deb [arch=amd64 trusted=yes] https://repo.vivaldi.com/stable/deb/ stable main

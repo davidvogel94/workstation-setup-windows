@@ -1,0 +1,9 @@
+---
+- name: Copy bluetooth configs
+  become: true
+  become_user: root
+  copy:
+    src: bluetooth
+    dest: '/var/lib/'
+    owner: root
+    group: root

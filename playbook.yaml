@@ -1,0 +1,88 @@
+---
+# Install requirements
+  - hosts: localhost
+    name: Bootstrap
+    connection: local
+    vars_files:
+      - config.yaml
+      - apt-repositories.yaml
+    tasks:
+      # Install drivers
+      #      - include: bootstrap/drivers.yaml
+      # Set up groups
+      - include: bootstrap/groups.yaml
+      # Add apt repositories
+      - include: bootstrap/apt-repositories.yaml
+      # Package management
+      - include: bootstrap/flatpak.yaml
+      - include: bootstrap/snap.yaml
+      # Install essential build utilties
+      - include: bootstrap/essential.yaml
+      - include: bootstrap/yq.yaml
+
+# Set up environment
+  - hosts: localhost
+    name: Environment
+    connection: local
+    become: true
+    become_user: root
+    vars_files:
+      - config.yaml
+      - mounts.yaml
+    tasks:
+      # Install general environment (preferred DE, other environment tools etc.)
+      - include: env/env-general.yaml
+      # Set up terminal environment
+      - include: env/terminal.yaml
+      - include: env/local-bin.yaml
+      # Set hostname
+      - include: env/hostname.yaml
+      # Install preferred browser
+      - include: env/browser.yaml
+      - include: env/file-management.yaml
+      - include: env/aliases.yaml
+      - include: env/mounts.yaml
+      # Set up bluetooth pairing
+      - include: env/bluetooth.yaml
+
+# # Development
+  - hosts: localhost
+    name: Development
+    connection: local
+    become: true
+    become_user: root
+    vars_files:
+      - config.yaml
+    tasks:
+
+      # Frontend/node
+      - include: dev/node.yaml
+
+      # SDKs
+      - include: dev/dotnet-sdk.yaml
+      
+      # # Containerisation & cloud
+      - include: dev/docker.yaml
+      - include: dev/microk8s.yaml
+      - include: dev/flux.yaml
+
+      # IDEs & editors
+      - include: dev/vscode.yaml
+
+      # Virtualization / QEMU, KVM, libvirt etc.
+      - include: dev/virtualization.yaml
+
+
+# General apps
+  - hosts: localhost
+    name: General Apps
+    connection: local
+    become: true
+    become_user: root
+    vars_files:
+      - config.yaml
+      - apps.yaml
+    tasks:
+      - include: apps/apt.yaml
+      - include: apps/snap.yaml
+      - include: apps/flatpak.yaml

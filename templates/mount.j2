@@ -1,0 +1,17 @@
+#  This file is part of systemd.
+
+[Unit]
+Description={{ item.Unit.Description }}
+DefaultDependencies={{ item.Unit.DefaultDependencies }}
+Conflicts={{ item.Unit.Conflicts }}
+Before={{ item.Unit.Before }}
+After={{ item.Unit.After }}
+
+[Mount]
+What={{ item.Mount.What }}
+Where={{ item.Mount.Where }}
+Type={{ item.Mount.Type }}
+Options={{ item.Mount.Options }}
+
+[Install]
+WantedBy={{ item.Install.WantedBy }}

@@ -1,0 +1,12 @@
+---
+- name: Install docker and docker-compose
+  apt:
+    pkg:
+      - docker.io
+      - docker-compose
+
+- name: Enable docker service
+  systemd:
+    name: docker
+    state: started
+    enabled: true

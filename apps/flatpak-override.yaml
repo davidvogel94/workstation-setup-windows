@@ -1,0 +1,4 @@
+---
+- name: Applying flatpak override
+  loop: '{{ outer_item["overrides"] }}'
+  shell: 'flatpak override {{ outer_item["name"] }} {{ item }}'

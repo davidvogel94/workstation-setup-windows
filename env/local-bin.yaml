@@ -1,0 +1,15 @@
+---
+- name: Create dir ~/.local/bin
+  file:
+    path: '/home/{{ username }}/.local/bin'
+    owner: '{{ username }}'
+    group: '{{ username }}'
+    state: directory
+    mode: 0755
+
+- name: Add ~/.local/bin to PATH
+  lineinfile: 
+    dest: '/home/{{ username }}/{{ item[1] }}'
+    line: 'export PATH=/home/{{ username }}/.local/bin:$PATH'
+    owner: '{{ username }}'
+  loop: '{{ env["rc"] }}'

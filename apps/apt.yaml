@@ -1,0 +1,6 @@
+---
+- name: Install selected apt packages
+  loop: '{{ apt }}'
+  apt:
+    name: '{{ item }}'
+    state: present

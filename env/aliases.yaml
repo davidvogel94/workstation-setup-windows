@@ -1,0 +1,7 @@
+---
+- name: Configure aliases
+  lineinfile:
+    path: '/home/{{ username }}/.zshrc'
+    line: 'alias {{ item }}'
+    owner: '{{ username }}'
+  loop: '{{ env["aliases"] }}'

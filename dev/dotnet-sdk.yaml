@@ -1,0 +1,27 @@
+---
+- name: 'Create folder {{ dotnet["install_path"] }}'
+  file:
+    path: '{{ dotnet["install_path"] }}'
+    state: directory
+    mode: 0775
+
+- name: Download dotnet-install script
+  get_url:
+    url: '{{ dotnet["install_script"] }}'
+    dest: '{{ dotnet["install_path"] }}/dotnet-install'
+    mode: 0775
+
+- name: Install dotnet SDK
+  script:
+    cmd: '{{ dotnet["install_path"] }}/dotnet-install -i {{ dotnet["install_path"] }}'
+
+- name: 'Add {{ dotnet["install_path"] }} to PATH'
+  lineinfile:
+    path: '/home/{{ username }}/{{ item[1] }}'
+    line: 'export PATH={{ dotnet["install_path"] }}:$PATH'
+  loop: '{{ env["rc"] }}'
+- name: 'Set DOTNET_INSTALL_DIR variable'
+  lineinfile:
+    path: '/home/{{ username }}/{{ item[1] }}'
+    line: 'export DOTNET_INSTALL_DIR="{{ dotnet["install_path"] }}"'
+  loop: '{{ env["rc"] }}'

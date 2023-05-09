@@ -1,0 +1,17 @@
+---
+- name: Allow snap to be installed on Linux Mint
+  file:
+    path: /etc/apt/preferences.d/nosnap.pref
+    state: absent
+
+- name: Install snapd
+  apt:
+    name: snapd
+    state: present
+    update_cache: true
+
+- name: Enable snapd service
+  systemd:
+    name: snapd
+    state: started
+    enabled: true

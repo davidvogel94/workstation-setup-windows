@@ -1,0 +1,6 @@
+---
+- name: Install yq
+  snap:
+    name: yq
+    classic: false
+

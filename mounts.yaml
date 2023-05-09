@@ -1,0 +1,17 @@
+# 'Systemd_File' must be same as 'Mount.Where' but no preceeding or trailing '/', and the remaining '/' replaced with '-'
+
+mounts:
+  - Systemd_File: media-shared
+    Unit:
+      Description: Dual-boot shared data (NTFS)
+      DefaultDependencies: 'no'
+      Conflicts: umount.target
+      Before: local-fs.target umount.target
+      After: swap.target
+    Mount:
+      What: /dev/disk/by-label/ntfs-shared
+      Where: /media/shared
+      Type: ntfs-3g
+      Options: defaults,umask=000,uid=1000,gid=1000,windows_names
+    Install:
+      WantedBy: multi-user.target

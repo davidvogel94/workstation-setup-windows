@@ -1,0 +1,11 @@
+---
+- name: Install selected flatpak packages
+  loop: '{{ flatpak }}'
+  flatpak:
+    name: '{{ item["name"] }}'
+
+- name: Apply flatpak overrides
+  loop: '{{ flatpak }}'
+  loop_control:
+    loop_var: outer_item
+  include_tasks: flatpak-override.yaml

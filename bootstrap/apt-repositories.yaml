@@ -1,0 +1,16 @@
+---
+- name: Add apt repository files
+  loop: '{{ apt_repos }}'
+  apt_repository: 
+    repo: '{{ item["repo"] }}'
+    state: present
+    filename: '{{ item["name"] }}'
+
+# Some apps will try to add themselves to the sources list again, causing errors.
+# This prevents the file from being modified. Undo with chattr -i <file>.
+- name: Make newly added apt source list files immutable
+  loop: '{{ apt_repos }}'
+  file: 
+    path: '/etc/apt/sources.list.d/{{ item["name"] }}.list'
+    attributes: '+i'
+

@@ -1,0 +1,20 @@
+---
+- name: Download fluxcd install script
+  get_url:
+    url: '{{ flux["install"] }}'
+    dest: '/tmp/flux.sh'
+    mode: 0777
+
+- name: Install FluxCD
+  command: '/tmp/flux.sh'
+
+- name: Register flux access token
+  become: true
+  become_user: '{{ username }}'
+  command: 'gpg -d {{ flux["access_token"] }}'
+  register: flux_token
+
+- name: Bootstrap Flux
+  become: true
+  become_user: '{{ username }}'
+  shell: 'export GITHUB_TOKEN={{ flux_token.stdout }}; alias kubectl="microk8s kubectl" && {{ flux["bootstrap"] }}'
