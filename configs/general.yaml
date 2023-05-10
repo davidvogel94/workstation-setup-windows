@@ -1,0 +1,46 @@
+---
+# General
+username: dave
+hostname: davepc
+terminal: terminator
+default_shell: /usr/bin/zsh
+browser_package: vivaldi-stable
+
+# Bluetooth devices
+bluetooth:
+  headset: 88:C9:E8:29:63:B5
+
+# Add user to these groups:
+groups_list:
+  - docker
+  - libvirt
+  - kvm
+  - microk8s
+  - mysql
+
+# Specific versions
+versions:
+  lf: 28 # i.e. version to download from Github releases for LF file manager
+
+env:
+  # profile: '$HOME\Documents\profile.ps1'
+  profile: '$PsHome\profile.ps1'
+    
+
+  aliases:
+    powershell: pwsh
+
+# Development
+dotnet: 
+  install_path: /opt/dotnet
+  install_script: https://dot.net/v1/dotnet-install.sh
+  versions: []
+
+node:
+  globals:
+    - yarn
+
+flux:
+  access_token: token.gpg
+  install: 'https://fluxcd.io/install.sh'
+  bootstrap: 'flux bootstrap github --owner=davidvogel94 --repository=flux-personal --path=clusters/dvogel.dev --personal'

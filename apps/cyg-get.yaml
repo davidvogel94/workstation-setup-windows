@@ -1,0 +1,5 @@
+---
+- name: Install selected cygwin packages
+  loop: '{{ cygget }}'
+  snap:
+    name: '{{ item["name"] }}'

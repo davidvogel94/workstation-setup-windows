@@ -1,0 +1,116 @@
+---
+extensions:
+  ## -------
+  ## GENERAL
+  ## -------
+  # Visual Studio Keymap
+  - ms-vscode.vs-keybindings
+  # Run button at top right of VSCode window
+  - karlsander.run-button
+  # Editorconfig
+  - EditorConfig.EditorConfig
+  # YAML support
+  - redhat.vscode-yaml
+  - PascalReitermann93.vscode-yaml-sort
+  # Markdown linter
+  - DavidAnson.vscode-markdownlint
+  # Autosave files
+  - codista.vscode-autosave
+  
+  ## -----------
+  ## REST Client
+  ## -----------
+  - rangav.vscode-thunder-client
+
+  ## ------------------
+  ## CONTAINERS / CLOUD
+  ## ------------------
+  # Docker
+  - ms-azuretools.vscode-docker
+  # Dev containers
+  - ms-vscode-remote.remote-containers
+  # Kubernetes
+  - ms-kubernetes-tools.vscode-kubernetes-tools
+  
+  ## ---
+  ## SQL
+  ## ---
+  - mtxr.sqltools
+
+  ## ----------
+  ## 3D PRINTER
+  ## ----------
+  # Auto-build Marlin firmware
+  - marlinfirmware.auto-build
+
+  ## -----
+  ## JS/TS
+  ## -----
+  # ESLint
+  - dbaeumer.vscode-eslint
+  # Prettier ESLint
+  - rvest.vs-code-prettier-eslint
+  # TypeScript Extension Pack
+  - loiane.ts-extension-pack
+  # Babel Javascript
+  - mgmcdermott.vscode-language-babel
+  
+  ## ------
+  ## DOTNET
+  ## ------
+  # C# support
+  - ms-dotnettools.csharp
+  # C# Colours
+  - logerfo.csharp-colors
+  # Automatically attach the debugger to a dotnet process started with dotnet-watch.
+  - DennisMaxJung.vscode-dotnet-auto-attach
+  # Add or remove references of your .NET Core projects.
+  - adrianwilczynski.add-reference
+  # Generate a Roslyn-inspired .editorconfig file for most of the C# project.
+  - doggy8088.netcore-editorconfiggenerator
+  # Dotnet Core Essentials
+  - KishoreIthadi.dotnet-core-essentials
+  # Dotnet CLI wrapper
+  - leo-labs.dotnet
+  # Extract method refactoring
+  - HarryHopkinson.extract-method
+  # .cshtml file support
+  - fireside21.cshtml
+  # C# Auto-using
+  - Fudge.auto-using
+  # C# format on save
+  - bilal-arikan.csharp-auto-formatter
+  # C# Namespace Autocompletion
+  - adrianwilczynski.namespace
+  # C# Snippets
+  - jorgeserrano.vscode-csharp-snippets
+  # C# sort usings
+  - jongrant.csharpsortusings
+  # C# XML documentation comments
+  - k--kato.docomment
+  # A tool for generating parametrized tests targeting xUnit, NUnit3 or MSTest
+  - AutomatedSoftwareTestingGmbH.devmate
+  # NuGet Gallery
+  - patcx.vscode-nuget-gallery
+  # VS Sharper for C#
+  - eservice-online.vs-sharper
+
+  ## ------------
+  ## DOTNET TESTS
+  ## ------------
+  # Converter extension from the Test Adapter UI to native VS Code testing
+  - ms-vscode.test-adapter-converter
+  # Test Explorer UI
+  - hbenl.vscode-test-explorer
+  # .Net Core Test Explorer for Visual Studio Code
+  - derivitec-ltd.vscode-dotnet-adapter
+  
+  ## -----
+  ## C/C++
+  ## -----
+  - ms-vscode.cpptools
+
+  ## ------
+  ## Golang
+  ## ------
+  - aldijav.golangwithdidi
